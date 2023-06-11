@@ -1,4 +1,8 @@
 import React from "react";
+
+import styles from "./Button.module.css";
+
+/*
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -29,6 +33,15 @@ const StyledButton = styled.button`
 
 const Button = (props) => {
   return <StyledButton {...props}>{props.children}</StyledButton>;
+};
+*/
+
+const Button = (props) => {
+  return (
+    <button type={props.type} className={styles.button} onCLick={props.onClick}>
+      {props.children}
+    </button>
+  );
 };
 
 export default Button;
