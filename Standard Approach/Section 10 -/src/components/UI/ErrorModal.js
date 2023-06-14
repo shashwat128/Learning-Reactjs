@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-
 import ReactDOM from "react-dom";
 
 import Card from "./Card";
@@ -31,7 +30,7 @@ const ErrorModal = (props) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onClick={props.onConfirm} />,
+        <Backdrop onConfirm={props.onConfirm} />,
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
