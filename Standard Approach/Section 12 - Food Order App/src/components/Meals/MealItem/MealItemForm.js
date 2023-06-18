@@ -1,4 +1,4 @@
-import Input from "../../UI/Input";
+import Input from "../../UI/CustomInput";
 
 import styles from "./MealItemForm.module.css";
 
