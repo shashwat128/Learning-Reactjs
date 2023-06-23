@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: #29ffe6;
 }
 
 .app {
@@ -18,12 +18,13 @@ body {
   max-width: 43rem;
   padding: 1rem;
   border-radius: 12px;
-  background-color: white;
+  background-color: rgb(255, 213, 169);
   margin: 3rem auto;
 }
 
 .form-control {
   margin-bottom: 1rem;
+  color: #417272;
 }
 
 .form-control input,
@@ -41,15 +42,15 @@ body {
   font: inherit;
   padding: 0.5rem;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #5f2525;
   width: 20rem;
   max-width: 100%;
 }
 
 .form-control input:focus {
   outline: none;
-  border-color: #240370;
-  background-color: #e0d4fd;
+  border-color: #23a6f8;
+  background-color: #abd1d0;
 }
 
 .control-group {
@@ -65,7 +66,7 @@ body {
 
 button {
   font: inherit;
-  background-color: #240370;
+  background-color: #256a81;
   color: white;
   border: 1px solid #240370;
   padding: 0.5rem 1.5rem;
@@ -75,7 +76,7 @@ button {
 
 button:hover,
 button:active {
-  background-color: #33059e;
+  background-color: #23b6f0;
   border-color: #33059e;
 }
 
@@ -97,15 +98,16 @@ button:disabled:active {
 }
 
 .invalid input {
-  border: 1px solid #b40e0e;
-  background-color: #fddddd;
+  border: 2px solid #f20909;
+  background-color: #fad5d5;
 }
 
 .invalid input:focus {
-  border-color: #ff8800;
-  background-color: #fbe8d2;
+  border: 2px;
+  border-color: #1d99e6;
+  background-color: #abd1d0;
 }
 
 .error-text {
-  color: #b40e0e;
+  color: #d10000;
 }
