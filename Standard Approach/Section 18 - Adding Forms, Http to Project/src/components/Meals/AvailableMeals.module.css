@@ -12,6 +12,15 @@
   font-weight: bold;
 }
 
+.mealError {
+  text-align: center;
+  color: rgb(219, 7, 39);
+  background-color: rgb(255, 193, 105);
+  font-family: cursive;
+  font-size: large;
+  font-weight: bold;
+}
+
 .meals ul {
   list-style: none;
   margin: 0;

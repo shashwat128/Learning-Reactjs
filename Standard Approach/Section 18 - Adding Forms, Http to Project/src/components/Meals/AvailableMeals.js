@@ -6,14 +6,19 @@ import { useEffect, useState } from "react";
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState();
 
   //useEffect cant be async function (not allowed) so it is nested inside it to mask it
   //thus overall useEffect function does not return a promise
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
-        "https://react-http-74e3d-default-rtdb.firebaseio.com/meals.json"
+        "https://react-http-74e3d-default-rtdb.firebaseio.com/meals"
       );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
 
       const responseData = await response.json();
 
@@ -30,13 +35,25 @@ const AvailableMeals = () => {
       setMeals(loadedMeals);
       setIsLoading(false);
     };
-    fetchMeals();
+
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setIsError(error.message);
+    });
   }, []);
 
   if (isLoading) {
     return (
       <section className={classes.mealIsLoading}>
         <p>loading..</p>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className={classes.mealError}>
+        <p>{isError}</p>
       </section>
     );
   }
