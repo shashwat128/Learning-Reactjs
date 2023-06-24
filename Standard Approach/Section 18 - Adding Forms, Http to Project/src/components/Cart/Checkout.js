@@ -1,35 +1,45 @@
+import { useRef } from "react";
 import classes from "./Checkout.module.css";
 
 const Checkout = (props) => {
-  const ConfirmHandler = (event) => {
+  const nameInputRef = useRef();
+  const streetInputRef = useRef();
+  const postalInputRef = useRef();
+  const cityInputRef = useRef();
+
+  const confirmHandler = (event) => {
     event.preventDefault();
   };
 
+  const enteredName = nameInputRef.current.value;
+  const enteredStreet = streetInputRef.current.value;
+  const enteredPostalCode = postalInputRef.current.value;
+  const enterdCity = cityInputRef.current.value;
+
   return (
-    <form onSubmit={ConfirmHandler}>
+    <form className={classes.form} onSubmit={confirmHandler}>
       <div className={classes.control}>
-        <label hrmlFor="name">Your Name</label>
-        <input type="text" id="name" />
+        <label htmlFor="name">Your Name</label>
+        <input type="text" id="name" ref={nameInputRef} />
       </div>
-
       <div className={classes.control}>
-        <label hrmlFor="street">Your Address</label>
-        <input type="text" id="street" />
+        <label htmlFor="street">Street</label>
+        <input type="text" id="street" ref={streetInputRef} />
       </div>
-
       <div className={classes.control}>
-        <label hrmlFor="postal">Postal Code</label>
-        <input type="text" id="postal" />
+        <label htmlFor="postal">Postal Code</label>
+        <input type="text" id="postal" ref={postalInputRef} />
       </div>
-
       <div className={classes.control}>
-        <label hrmlFor="city">City</label>
-        <input type="text" id="city" />
+        <label htmlFor="city">City</label>
+        <input type="text" id="city" ref={cityInputRef} />
       </div>
-      <button type="button" onClick={props.onCancel}>
-        Cancel
-      </button>
-      <button>Confirm</button>
+      <div className={classes.actions}>
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
+        <button className={classes.submit}>Confirm</button>
+      </div>
     </form>
   );
 };
