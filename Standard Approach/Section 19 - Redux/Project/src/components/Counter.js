@@ -1,6 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import classes from "./Counter.module.css";
+import { Component } from "react";
 
+/*
 const Counter = () => {
   const dispatch = useDispatch();
 
@@ -36,5 +38,50 @@ const Counter = () => {
     </main>
   );
 };
+*/
 
-export default Counter;
+class Counter extends Component {
+  incrementHandler() {
+    this.props.increment();
+  }
+
+  decrementHandler() {
+    this.props.decrement();
+  }
+
+  toggleCounterHandler() {}
+
+  render() {
+    return (
+      <main className={classes.counter}>
+        <h1>Redux Counter</h1>
+        <div className={classes.value}>{this.props.counter}</div>
+        <div>
+          <button onClick={this.incrementHandler.bind(this)}>Increment</button>
+          <button onClick={this.decrementHandler.bind(this)}>Decrement</button>
+        </div>
+        <button onClick={this.toggleCounterHandler}>Toggle Counter</button>
+      </main>
+    );
+  }
+}
+
+//connect will return a new function as a value, which we then execute again, and then we pass out component to that returned function as our argument.
+//connect will take two arguments and both are functions
+//first function maps redux state to props, which will be recieved by this Counter component then.
+//it will return an object where keys will be returned as props in the receiving component.(counter component)
+//Values of those keys are the logic drilling into the redux state.
+const mapStateToProps = (state) => {
+  return {
+    counter: state.counter,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => dispatch({ type: "increment" }),
+    decrement: () => dispatch({ type: "decrement" }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
