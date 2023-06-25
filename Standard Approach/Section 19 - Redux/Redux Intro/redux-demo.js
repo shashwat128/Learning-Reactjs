@@ -2,16 +2,22 @@ const redux = require("redux");
 
 // reducer function
 const counterReducer = (state = { counter: 0 }, action) => {
-  return {
-    counter: state.counter + 1,
-  };
+  if (action.type === "increment") {
+    return {
+      counter: state.counter + 1,
+    };
+  }
+
+  if (action.type === "decrement") {
+    return {
+      counter: state.counter - 1,
+    };
+  }
+  return;
 };
 
 // the one central data store
 const store = redux.createStore(counterReducer);
-
-//to get initial state
-console.log(store.getState());
 
 //Subscriber.
 //Subscriber function - this will hold the function which does not get any parameter.
@@ -25,3 +31,4 @@ store.subscribe(counterSubscriber);
 // create and dispatch an action
 //action - javascript object with a type property acts as identifier
 store.dispatch({ type: "increment" });
+store.dispatch({ type: "decrement" });
