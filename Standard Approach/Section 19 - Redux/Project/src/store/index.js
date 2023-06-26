@@ -1,20 +1,20 @@
 import { createStore } from "redux";
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-//existing state as the first argument, asction dispatched as second
+//existing state as the first argument, action dispatched as second
 //state given default value, so that when the reducer is executed for the first time, we have an initial state.
 
 const initialState = { counter: 0, showCounter: true };
 
 //Object as an argument.
-createSlice({
+const counterSlice = createSlice({
   name: "counter", //identifier
   //all the methods inside reducer will be called by Redux and will automatically receive the current state
   initialState: initialState, //initial state
   reducers: {
-    // we wont need action here because these mwthods will automatically be called depending on which action was triggered
+    // we wont need action here because these methods will automatically be called depending on which action was triggered
     //We are allowed to mutate the state here
-    //because redux toolkit internally uses another package "imgur", which detects codes like this and clino the existing state,  create a new state object, keep all the state which we are not editing, and override the state which we are editing in an immutable way
+    //because redux toolkit internally uses another package "imgur", which detects codes like this and clone the existing state,  create a new state object, keep all the state which we are not editing, and override the state which we are editing in an immutable way
     increment(state) {
       state.counter++;
     },
@@ -31,6 +31,7 @@ createSlice({
   },
 });
 
+/*counterReducer old (without toolkit)
 const counterReducer = (state = initialState, action) => {
   if (action.type === "increment") {
     return {
@@ -64,10 +65,21 @@ const counterReducer = (state = initialState, action) => {
   }
 
   return state;
-};
+}; 
 
 //central data (state) store
 //create store wants a pointer at a resucer function as a parametre.
 const store = createStore(counterReducer);
+*/
+
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+/* redux solution
+const store = createStore(counterSlice.reducer);
+//this is a good to go solution for smaller application but if the application goes bigger then it will grow in multiple state slices too and we would face problem with this solution. 
+//because there could only be one reducer be passed to create storeand when we have multiple slices, we have multiple reducers which we access with .reducer
+*/
 
 export default store;
