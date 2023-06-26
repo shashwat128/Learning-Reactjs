@@ -16,6 +16,9 @@ const counterReducer = (state = initialState, action) => {
     return {
       counter: state.counter + action.amount,
       showCounter: state.showCounter,
+
+      //Never mutate the current state always override - could lead to unexpected bugs and side-effects (state get out of sync, and suddenly the UI is not reflecting your state)
+      //state.counter++   --   XXX
     };
   }
 
