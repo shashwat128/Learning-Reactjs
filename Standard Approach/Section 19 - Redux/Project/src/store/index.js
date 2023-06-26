@@ -23,9 +23,10 @@ const counterSlice = createSlice({
     },
     //for this we need extra data
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      //state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload;
     },
-    toggleCOunter(state) {
+    toggleCounter(state) {
       state.showCounter = !state.showCounter;
     },
   },
@@ -72,14 +73,24 @@ const counterReducer = (state = initialState, action) => {
 const store = createStore(counterReducer);
 */
 
-const store = configureStore({
-  reducer: counterSlice.reducer,
-});
-
 /* redux solution
 const store = createStore(counterSlice.reducer);
 //this is a good to go solution for smaller application but if the application goes bigger then it will grow in multiple state slices too and we would face problem with this solution. 
 //because there could only be one reducer be passed to create storeand when we have multiple slices, we have multiple reducers which we access with .reducer
 */
+
+/*
+//central data (state) store
+//create store wants a pointer at a resucer function as a parametre.
+const store = createStore(counterReducer);
+*/
+
+//main reducer for configureStore
+//an object could be passed inside it as key which could be used to pass multiple reducers thereafter.
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+export const counterActions = counterSlice.actions;
 
 export default store;

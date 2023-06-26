@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Counter.module.css";
+import { counterActions } from "../store";
 
 const Counter = () => {
   const dispatch = useDispatch();
@@ -18,19 +19,29 @@ const Counter = () => {
   //increment and decrement handler function using the dispatch function
   const incrementHandler = () => {
     //the identifiers should be exactly what was passed inside the conditional state in the reducer function in the "store/index.js". (no typos!)
-    dispatch({ type: "increment" });
+    //dispatch({ type: "increment" });
+
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 });
+    //dispatch({ type: "increase", amount: 5 });
+
+    //passing payload data
+    //stored in extra field name "payload: 5"
+    dispatch(counterActions.increase(5));
   };
 
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    //dispatch({ type: "decrement" });
+
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    //dispatch({ type: "toggle" });
+
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
