@@ -12,6 +12,9 @@ const Counter = () => {
   //when we use "useSelector" - react redux will automatically set up a subscription to the Redux store for this component.
   //any change will trigger it - which brings the latest state.
 
+  //ToggleCounter - visibility
+  const show = useSelector((state) => state.showCounter);
+
   //increment and decrement handler function using the dispatch function
   const incrementHandler = () => {
     //the identifiers should be exactly what was passed inside the conditional state in the reducer function in the "store/index.js". (no typos!)
@@ -26,12 +29,14 @@ const Counter = () => {
     dispatch({ type: "decrement" });
   };
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({ type: "toggle" });
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increase 5</button>
