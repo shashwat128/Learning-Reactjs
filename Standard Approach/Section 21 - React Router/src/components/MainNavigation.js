@@ -13,9 +13,6 @@ function MainNavigation() {
               className={({ isActive }) =>
                 isActive ? styles.active : undefined
               }
-              // style={({ isActive }) => ({
-              //   textAlign: isActive ? "center" : "left",
-              // })}
               end
             >
               Home
