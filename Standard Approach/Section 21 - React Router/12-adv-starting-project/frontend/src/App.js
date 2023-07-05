@@ -1,17 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import HomePage from "./pages/Home";
-import EventsPage, { loader as eventsLoader } from "./pages/Events";
+import EditEventPage from "./pages/EditEvent";
+import ErrorPage from "./pages/Error";
 import EventDetailPage, {
   loader as eventDetailLoader,
   action as deleteEventAction,
 } from "./pages/EventDetails";
+import EventsPage, { loader as eventsLoader } from "./pages/Events";
+import EventsRootLayout from "./pages/EventRoot";
+import HomePage from "./pages/Home";
 import NewEventPage from "./pages/NewEvent";
-import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./pages/Root";
-import EventRootLayout from "./pages/EventRoot";
-import ErrorPage from "./pages/Error";
 import { action as manipulateEventAction } from "./components/EventForm";
+import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 
 const router = createBrowserRouter([
   {
@@ -20,17 +21,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-
       {
         path: "events",
-        element: <EventRootLayout />,
+        element: <EventsRootLayout />,
         children: [
           {
             index: true,
             element: <EventsPage />,
             loader: eventsLoader,
           },
-
           {
             path: ":eventId",
             id: "event-detail",
@@ -48,13 +47,17 @@ const router = createBrowserRouter([
               },
             ],
           },
-
           {
             path: "new",
             element: <NewEventPage />,
             action: manipulateEventAction,
           },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsletterAction,
       },
     ],
   },
