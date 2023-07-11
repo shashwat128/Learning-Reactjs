@@ -39,7 +39,6 @@ function MainNavigation() {
               Newsletter
             </NavLink>
           </li>
-
           <li>
             <NavLink
               to="/auth?mode=login"
