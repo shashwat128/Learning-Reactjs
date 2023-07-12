@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-import React from "react";
-
->>>>>>> bb22877cfb516828a72da52aeccfc32201977c43
 import {
   Form,
   Link,
@@ -10,10 +5,6 @@ import {
   useActionData,
   useNavigation,
 } from "react-router-dom";
-<<<<<<< HEAD
-//Query parameter are officially called search params
-=======
->>>>>>> bb22877cfb516828a72da52aeccfc32201977c43
 
 import classes from "./AuthForm.module.css";
 
@@ -50,7 +41,7 @@ function AuthForm() {
             {isLogin ? "Create new user" : "Login"}
           </Link>
           <button disabled={isSubmitting}>
-            {isSubmitting ? "Submitting.." : "Save"}
+            {isSubmitting ? "Submitting..." : "Save"}
           </button>
         </div>
       </Form>
